@@ -56,7 +56,7 @@ public class CategoriaDAO {
         }
     }
     
-    public List<Categoria> getCategoria(String nomeCategoria) throws Exception{
+    public List<Categoria> getCategorias(String nomeCategoria) throws Exception{
         List<Categoria> lista = new ArrayList();
         
         String sql = "SELECT * FROM categoria WHERE nomecategoria LIKE ?";
