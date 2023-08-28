@@ -5,6 +5,8 @@ import conexao.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CategoriaDAO {
 
@@ -51,6 +53,28 @@ public class CategoriaDAO {
             stmt.execute();
         } catch (Exception e) {
             throw new Exception("Erro ao atualizar categoria: " + e.getMessage());
+        }
+    }
+    
+    public List<Categoria> getCategoria(String nomeCategoria) throws Exception{
+        List<Categoria> lista = new ArrayList();
+        
+        String sql = "SELECT * FROM categoria WHERE nomecategoria LIKE ?";
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement(sql);
+            stmt.setString(1, "%" + nomeCategoria + "%");
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Categoria c = new Categoria();
+                c.setId(rs.getInt("id"));
+                c.setNomecategoria(rs.getString("nomecategoria"));
+                
+                lista.add(c);
+            }
+            return lista;
+        } catch (Exception e) {
+            throw new Exception("Categoria não encontrada");
         }
     }
 }
