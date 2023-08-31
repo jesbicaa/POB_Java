@@ -17,7 +17,7 @@ public class ProdutoDAO {
         try {
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setString(1, p.getNomeproduto());
-            stmt.setDouble(1, p.getValor());
+            stmt.setDouble(2, p.getValor());
             stmt.setInt(3, p.getCategoriaid().getId());
             stmt.execute();
         } catch (Exception e) {
