@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriaDAO {
-
     private Connection conn;
 
     public CategoriaDAO() {
